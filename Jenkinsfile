@@ -1,6 +1,6 @@
 node {
    stage ('Checkout') {
-    git url: "https://github.com/sravanim14/gradle-springboot-mongodb.git"
+    checkout scm
    }
 
    stage ('Build') {  
