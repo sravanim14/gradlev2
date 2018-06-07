@@ -20,4 +20,13 @@ node {
      bat './gradlew.bat test'
     }
    }
+   
+   stage ('Docker Build') {
+    if (isUnix()) {
+      sh 'docker build -t sravani/springboot-mongo:latest .'
+    } 
+    else {
+      bat 'docker build -t sravani/springboot-mongo:latest .'
+    }
+   }
 }
