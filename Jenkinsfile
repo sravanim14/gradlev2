@@ -31,9 +31,9 @@ node {
       repository: 'gradle-springboot-repo',
       credentialsId: 'nexus-admin-creds',
       artifacts: [
-        [artifactId: 'springboot-mongodb-restapi-2017',
+        [artifactId: 'springbootapp-pipeline',
          classifier: '',
-         file: 'build/libs/springboot-mongodb-restapi-2017-0.0.1-SNAPSHOT.jar',
+         file: 'build/libs/springbootapp-pipeline-0.0.1-SNAPSHOT.jar',
          type: 'jar']
       ]
       )  
