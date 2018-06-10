@@ -36,15 +36,25 @@ node {
          file: 'build/libs/springbootapp-pipeline-0.0.1-SNAPSHOT.jar',
          type: 'jar']
       ]
-      )  
+    )  
    }
    
    stage ('Docker Build') {
     if (isUnix()) {
-      sh 'docker build -t sravani/springboot-mongo:latest .'
+      sh 'docker build -t sravanimadireddy/springboot-restapi:latest .'
     } 
     else {
-      bat 'docker build -t sravani/springboot-mongo:latest .'
+      bat 'docker build -t sravanimadireddy/springboot-restapi:latest .'
+    }
+   }
+   
+   stage('Publish') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'dockerhub-credsPassword', usernameVariable: 'dockerhub-credsUser')]) 
+		{
+		  bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          bat 'docker push sravanimadireddy/springboot-restapi:latest'
+        }
     }
    }
 }
