@@ -49,7 +49,7 @@ node {
    }
    
    stage('Publish') {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'dockerhub-credsPassword', usernameVariable: 'dockerhub-credsUser')]) 
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
 		{
 		  bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           bat 'docker push sravanimadireddy/springboot-restapi:latest'
