@@ -55,4 +55,26 @@ node {
           bat 'docker push sravanimadireddy/springboot-restapi:latest'
         }
    }
+   
+   stage('Deploy Application') {
+   
+    switch (env.BRANCH_NAME) {
+		
+	  case "master":
+	    bat "kubectl create -f kub-deploy-files/mongo-service.yaml"
+		bat "kubectl create -f kub-deploy-files/mongo-controller.yaml"
+	    bat "kubectl create -f kub-deploy-files/deployment.yaml"
+	    bat "kubectl create -f kub-deploy-files/service.yaml"
+		bat "powershell.exe SET-Variable -Name PORT -Value $(kubectl get services/spring-boot-service -o go-template='{{(index .spec.ports 0).nodePort}}')"
+	    bat "powershell.exe $Portvalue=Get-Variable PORT -ValueOnly"
+        bat "powershell.exe $message="My services are running on http://127.0.0.1:" + $Portvalue"
+        bat "$message"
+		
+	  case "develop":
+	    bat "sed 's#127.0.0.1:30400/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
+		bat "kubectl set image deployments/spring-boot-service-deployment kspring-boot-service-deployment=sravanimadireddy/springboot-restapi:latest"
+        bat "kubectl rollout status deployment/spring-boot-service-deployment"
+		
+	}
+   }
 }
