@@ -59,10 +59,10 @@ node {
    
    stage('Deploy Application') {
         bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/mongo-service.yaml"
-		/*bat "set KUBECONFIG=\"C:\\Users/VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/mongo-controller.yaml"
+		bat "set KUBECONFIG=\"C:\\Users/VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/mongo-controller.yaml"
 	    bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/deployment.yaml"
 	    bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/service.yaml"
-		bat "powershell.exe SET-Variable -Name PORT -Value \$(kubectl get services/spring-boot-service -o go-template='{{(index .spec.ports 0).nodePort}}')"
+		/*bat "powershell.exe SET-Variable -Name PORT -Value \$(kubectl get services/spring-boot-service -o go-template='{{(index .spec.ports 0).nodePort}}')"
 	    bat "powershell.exe \$Portvalue=Get-Variable PORT -ValueOnly"
         bat "powershell.exe \$message="My services are running on http://127.0.0.1:" + \$Portvalue"
         bat "\$message"*/
