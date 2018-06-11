@@ -58,8 +58,7 @@ node {
    }
    
    stage('Deploy Application') {   
-        bat "powershell.exe \$env:KUBECONFIG='C:/Users/VenkataSatyaSravaniM/.kube/config'"
-		bat "powershell.exe [Environment]::SetEnvironmentVariable("KUBECONFIG", "C:/Users/VenkataSatyaSravaniM/.kube/config", [EnvironmentVariableTarget]::User)"
+        bat "kubectl config set-context docker-for-desktop-cluster"
 	    bat "kubectl create -f kub-deploy-files/mongo-service.yaml"
 		bat "kubectl create -f kub-deploy-files/mongo-controller.yaml"
 	    bat "kubectl create -f kub-deploy-files/deployment.yaml"
