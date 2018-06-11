@@ -58,7 +58,7 @@ node {
    }
    
    stage('Deploy Application') {
-        bat "set KUBECONFIG='C:\Users\VenkataSatyaSravaniM\.kube\config'"
+        bat "set KUBECONFIG='C:/Users/VenkataSatyaSravaniM/.kube/config'"
         bat "kubectl config set-context docker-for-desktop-cluster"
 	    bat "kubectl create -f kub-deploy-files/mongo-service.yaml"
 		bat "kubectl create -f kub-deploy-files/mongo-controller.yaml"
