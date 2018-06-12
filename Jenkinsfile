@@ -6,10 +6,10 @@ node {
 
    stage('SonarQube analysis') {
 	 if (isUnix()) {
-      sh './gradlew --info sonarqube -Dsonar.host.url=http://localhost:9000'
+      sh './gradlew sonarqube -Dsonar.host.url=http://localhost:9000'
      } 
 	 else {
-      bat './gradlew --info sonarqube -Dsonar.host.url=http://localhost:9000'
+      bat './gradlew sonarqube -Dsonar.host.url=http://localhost:9000'
      }
    }
 	
@@ -62,7 +62,8 @@ node {
 		bat "set KUBECONFIG=\"C:\\Users/VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/mongo-controller.yaml"
 	    bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/deployment.yaml"
 	    bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/service.yaml"
-		/*bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & set PORT=\$(kubectl get services/spring-boot-service -o go-template='{{(index .spec.ports 0).nodePort}}') & "
+		bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl get services/spring-boot-service -o go-template=\'{{(index .spec.ports 0).nodePort}}\'"
+		/*bat set PORT=kubectl get services/spring-boot-service -o go-template="{{(index .spec.ports 0).nodePort}}"
 	    bat "powershell.exe \$Portvalue=Get-Variable PORT -ValueOnly"
         bat "powershell.exe \$message="My services are running on http://127.0.0.1:" + \$Portvalue"
         bat "\$message"*/
