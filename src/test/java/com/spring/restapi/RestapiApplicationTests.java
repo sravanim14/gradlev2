@@ -3,6 +3,7 @@ package com.spring.restapi;
 import com.spring.restapi.models.Product;
 import com.spring.restapi.repositories.ProductRepository;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 public class RestapiApplicationTests {
 	
 	private ProductRepository productRepository;
-	public String id;
+	static String id_value;
     public Product savedProduct;
 	
     @Autowired
@@ -32,27 +33,26 @@ public class RestapiApplicationTests {
 	public void contextLoads() {
 	}*/
 	
+	@Before
+	public void init() {
+		productRepository.deleteAll();
+        Product product = new Product("Dummy Product 1", "The First Product in The world part 1", 100.0, "https://dummyimage.com/600x400/000/aaa");
+		Product savedProduct = productRepository.save(product);
+		id_value=savedProduct.getId();
+	}
+		
 	@Test
     public void createProduct() {
-        Product product = new Product("Dummy Product 1", "The First Product in The world part 1", 100.0, "https://dummyimage.com/600x400/000/ggg");
+		System.out.println("Test1");
+		
+        Product product = new Product("Dummy Product 2", "The First Product in The world part 2", 200.0, "https://dummyimage.com/600x400/000/bbb");
 		Product savedProduct = productRepository.save(product);
-		
-		//system.out.println(savedProduct.getId());
-		
-        //Product newProduct = productRepository.findOne(savedProduct.getId());
-        /*assertEquals("Dummy Product 1", newProduct.getProdName());
-        assertEquals("The First Product in The world part 1", newProduct.getProdDesc());
-		assertEquals(100.0, newProduct.getProdPrice());
-		assertEquals("https://dummyimage.com/600x400/000/ggg", newProduct.getProdImage());*/
-		//id = product.getId();
-       /* Book savedBook = repository.save(book);
-        Book newBook = repository.findOne(savedBook.Id());
-        assertEquals("Java 8 in Action", newBook.getName());
-        assertEquals("Programming", newBook.getDescription());*/
+		System.out.println(savedProduct.getId());
     }
 
     @Test
     public void findAllProducts() {
+		System.out.println("Test2");
         Iterable<Product> products = productRepository.findAll();
         assertNotNull(products);
         //assertTrue(!products.isEmpty());
@@ -60,16 +60,32 @@ public class RestapiApplicationTests {
 
     @Test
     public void findProductById() {
-        Product product = productRepository.findOne(savedProduct.getId());
+        Product product = productRepository.findOne(id_value);
         assertNotNull(product);
+		assertEquals("Dummy Product 1", product.getProdName());
+        assertEquals("The First Product in The world part 1", product.getProdDesc());
+		assertEquals(100.0, product.getProdPrice(), 0.0);
+		assertEquals("https://dummyimage.com/600x400/000/aaa", product.getProdImage());
+    }
+	
+	@Test
+    public void updateProduct() {
+		Product product = productRepository.findOne(id_value);
+		product.setProdName("Spring Product1");
+		product.setProdDesc("Spring related Product");
+		product.setProdPrice(300.0);
+		product.setProdImage("https://dummyimage.com/600x400/000/spring");
+		
+		assertEquals("Spring Product1", product.getProdName());
+        assertEquals("Spring related Product", product.getProdDesc());
+		assertEquals(300.0, product.getProdPrice(), 0.0);
+		assertEquals("https://dummyimage.com/600x400/000/spring", product.getProdImage());
     }
 
     @Test
     public void deleteProductWithId() {
-        Product product = productRepository.findOne(savedProduct.getId());
+        Product product = productRepository.findOne(id_value);
         productRepository.delete(product);
         assertNotNull(product);
     }
-	
-
 }
