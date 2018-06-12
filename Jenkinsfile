@@ -21,15 +21,6 @@ node {
       bat './gradlew.bat clean build'
     }
    }
-
-   stage ('Test') {
-    if (isUnix()) {
-     sh './gradlew test'
-    } 
-	else {
-     bat './gradlew.bat test'
-    }
-   }
    
    stage ('Nexus Upload') {
     nexusArtifactUploader(
