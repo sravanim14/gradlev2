@@ -21,8 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
     
-    @Autowired
+    //@Autowired
     ProductRepository productRepository;
+	
+	@Autowired
+    public void setRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
     
     @RequestMapping(method=RequestMethod.GET, value="/products")
     public Iterable<Product> product() {
