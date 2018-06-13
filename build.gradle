@@ -52,10 +52,15 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile('io.springfox:springfox-swagger2:2.9.0')
+	compile('io.springfox:springfox-swagger-ui:2.3.0')
+	compile('io.springfox:springfox-bean-validators:2.8.0')
 }

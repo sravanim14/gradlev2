@@ -4,6 +4,7 @@ import com.spring.restapi.models.Product;
 import com.spring.restapi.repositories.ProductRepository;
 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class RestapiApplicationTests {
 	
 	private ProductRepository productRepository;
 	static String id_value;
+	static String testid_value;
     public Product savedProduct;
 	
     @Autowired
@@ -29,10 +31,6 @@ public class RestapiApplicationTests {
         this.productRepository = productRepository;
     }
 
-	/*@Test
-	public void contextLoads() {
-	}*/
-	
 	@Before
 	public void init() {
 		productRepository.deleteAll();
@@ -43,16 +41,15 @@ public class RestapiApplicationTests {
 		
 	@Test
     public void createProduct() {
-		System.out.println("Test1");
-		
-        Product product = new Product("Dummy Product 2", "The First Product in The world part 2", 200.0, "https://dummyimage.com/600x400/000/bbb");
+		Product product = new Product("Dummy Product 2", "The First Product in The world part 2", 200.0, "https://dummyimage.com/600x400/000/bbb");
 		Product savedProduct = productRepository.save(product);
-		System.out.println(savedProduct.getId());
+        
+		testid_value=savedProduct.getId();
+		productRepository.delete(savedProduct);
     }
 
     @Test
     public void findAllProducts() {
-		System.out.println("Test2");
         Iterable<Product> products = productRepository.findAll();
         assertNotNull(products);
         //assertTrue(!products.isEmpty());
@@ -88,4 +85,5 @@ public class RestapiApplicationTests {
         productRepository.delete(product);
         assertNotNull(product);
     }
+	
 }
