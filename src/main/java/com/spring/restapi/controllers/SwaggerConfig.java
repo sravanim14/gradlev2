@@ -15,6 +15,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import java.util.Collections;
 
 @Configuration
 @EnableSwagger2
@@ -28,13 +29,15 @@ public class SwaggerConfig {
                 .build();
     }
  
-private ApiInfo apiInfo() {
+    private ApiInfo apiInfo() {
      return new ApiInfo(
        "My REST API", 
        "My SpringBoot REST API.", 
        "API TOS", 
        "Terms of service", 
        new Contact("Sai Kishore", "www.google.com", "skishore@in.ibm.com"), 
-       "License of API", "API license URL", Collections.emptyList());
-      }		  
+       "License of API", 
+	   "API license URL", 
+	   Collections.emptyList());
+    }		  
 }
