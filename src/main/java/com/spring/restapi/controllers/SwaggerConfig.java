@@ -16,14 +16,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {                                    
     @Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("com.spring.restapi.controller"))              
-          .paths(PathSelectors.ant("/*"))                          
-          .build(); 
-          .apiInfo(apiInfo());
-}
+    public Docket apiDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
  
 private ApiInfo apiInfo() {
      return new ApiInfo(
@@ -33,5 +32,5 @@ private ApiInfo apiInfo() {
        "Terms of service", 
        new Contact("Sai Kishore", "www.google.com", "skishore@in.ibm.com"), 
        "License of API", "API license URL", Collections.emptyList());
-}		  
+      }		  
 }
