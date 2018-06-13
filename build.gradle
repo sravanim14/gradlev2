@@ -23,7 +23,7 @@ apply plugin: 'org.sonarqube'
 sonarqube {
   properties {
     property "sonar.projectName", "Gradle-Springboot"
-    property "sonar.projectKey", "MyGradle:JacocoCodeCoverage"
+    property "sonar.projectKey", "org.sonarqube:JacocoCodeCoverage"
     property "sonar.reportPath", "${project.buildDir}/jacoco/test.exec"
   }
 }
