@@ -8,18 +8,36 @@ package com.spring.restapi.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.*;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+
 /**
  *
- * @author didin
+ * @author Sravani
  */
 
 @Document(collection = "products")
+@ApiModel(description = "Class representing a Products tracked by the Application.")
 public class Product {
     @Id
+    @ApiModelProperty(notes = "The database generated product ID")
     String id;
+	
+	@ApiModelProperty(notes = "The Product Name")
     String prodName;
+	
+	@ApiModelProperty(notes = "The product description")
     String prodDesc;
+	
+	@ApiModelProperty(notes = "The price of the product", required = true)
     Double prodPrice;
+	
+	@ApiModelProperty(notes = "The image URL of the product")
     String prodImage;
 
     public Product() {
