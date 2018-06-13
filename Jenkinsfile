@@ -29,12 +29,12 @@ node {
       nexusUrl: 'localhost:8081',
       groupId: 'hello',
       version: '0.0.1-SNAPSHOT',
-      repository: 'gradle-springboot-repo',
+      repository: 'Spring_RESTAPI',
       credentialsId: 'nexus-admin-creds',
       artifacts: [
         [artifactId: 'springbootapp-pipeline',
          classifier: '',
-         file: 'build/libs/springbootapp-pipeline-0.0.1-SNAPSHOT.jar',
+         file: 'build/libs/Spring_RESTAPI*.jar',
          type: 'jar']
       ]
     )  

@@ -3,6 +3,7 @@ buildscript {
 		springBootVersion = '1.5.7.RELEASE'
 	}
 	repositories {
+	    jcenter()
 		mavenCentral()
 		maven {
             url "https://plugins.gradle.org/m2/"
@@ -57,5 +58,8 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("io.springfox:springfox-swagger2:2.7.0")
+	compile("io.springfox:springfox-swagger-ui:2.7.0")
+	compile ('com.mangofactory:swagger-springmvc:1.0.2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
