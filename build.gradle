@@ -3,7 +3,7 @@ buildscript {
 		springBootVersion = '1.5.7.RELEASE'
 	}
 	repositories {
-		mavenCentral()
+	    mavenCentral()
 		maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -23,7 +23,7 @@ apply plugin: 'org.sonarqube'
 sonarqube {
   properties {
     property "sonar.projectName", "Gradle-Springboot"
-    property "sonar.projectKey", "MyGradle:JacocoCodeCoverage"
+    property "sonar.projectKey", "org.sonarqube:JacocoCodeCoverage"
     property "sonar.reportPath", "${project.buildDir}/jacoco/test.exec"
   }
 }
