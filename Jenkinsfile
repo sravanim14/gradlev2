@@ -29,7 +29,7 @@ node {
       nexusUrl: 'localhost:8081',
       groupId: 'hello',
       version: '0.0.1-SNAPSHOT',
-      repository: 'Spring_RESTAPI',
+      repository: 'gradle-springboot-repo',
       credentialsId: 'nexus-admin-creds',
       artifacts: [
         [artifactId: 'springbootapp-pipeline',
