@@ -4,15 +4,6 @@ node {
     checkout scm
    }
 
-   stage('SonarQube analysis') {
-	 if (isUnix()) {
-      sh './gradlew sonarqube -Dsonar.host.url=http://localhost:9000'
-     } 
-	 else {
-      bat './gradlew sonarqube -Dsonar.host.url=http://localhost:9000'
-     }
-   }
-	
    stage ('Build') {  
     if (isUnix()) {
       sh './gradlew clean build' 
@@ -20,6 +11,15 @@ node {
 	else {
       bat './gradlew.bat clean build'
     }
+   }
+   
+   stage('Code analysis') {
+	 if (isUnix()) {
+      sh './gradlew sonarqube -Dsonar.host.url=http://localhost:9000'
+     } 
+	 else {
+      bat './gradlew sonarqube -Dsonar.host.url=http://localhost:9000'
+     }
    }
    
    stage ('Nexus Upload') {

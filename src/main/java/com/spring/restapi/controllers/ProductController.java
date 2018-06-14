@@ -54,7 +54,7 @@ public class ProductController {
     } 
 	
  	@ApiOperation(value = "Add a product", response = Product.class)
-    @RequestMapping(method=RequestMethod.POST, value="/products", produces="application/json")   
+    @RequestMapping(method=RequestMethod.POST, value="/products")   
     public String save(@RequestBody Product product) {
         productRepository.save(product);
 
@@ -84,7 +84,7 @@ public class ProductController {
     }
     
 	@ApiOperation(value = "Delete a product")
-    @RequestMapping(method=RequestMethod.DELETE, value="/products/{id}", produces="application/json")
+    @RequestMapping(method=RequestMethod.DELETE, value="/products/{id}")
     public String delete(@PathVariable String id) {
         Product product = productRepository.findOne(id);
         productRepository.delete(product);
