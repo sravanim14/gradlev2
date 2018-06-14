@@ -33,19 +33,19 @@ public class RestapiApplicationTests {
 
     @Before
     public void init() {
-	productRepository.deleteAll();
+	    productRepository.deleteAll();
         Product product = new Product("Dummy Product 1", "The First Product in The world part 1", 100.0, "https://dummyimage.com/600x400/000/aaa");
-	Product savedProduct = productRepository.save(product);
-	id_value=savedProduct.getId();
+	    Product savedProduct = productRepository.save(product);
+	    id_value=savedProduct.getId();
     }
 		
     @Test
     public void createProduct() {
-	Product product = new Product("Dummy Product 2", "The First Product in The world part 2", 200.0, "https://dummyimage.com/600x400/000/bbb");
-	Product savedProduct = productRepository.save(product);
+	    Product product = new Product("Dummy Product 2", "The First Product in The world part 2", 200.0, "https://dummyimage.com/600x400/000/bbb");
+	    Product savedProduct = productRepository.save(product);
         
-	testid_value=savedProduct.getId();
-	productRepository.delete(savedProduct);
+	    testid_value=savedProduct.getId();
+	    productRepository.delete(savedProduct);
     }
 
     @Test
@@ -59,6 +59,20 @@ public class RestapiApplicationTests {
         Product product = productRepository.findOne(id_value);
         assertNotNull(product);
     }
+    
+    @Test
+    public void updateProduct() {
+    	Product product = productRepository.findOne(id_value);
+    	product.setProdName("Spring Product1");
+    	product.setProdDesc("Spring related Product");
+    	product.setProdPrice(300.0);
+    	product.setProdImage("https://dummyimage.com/600x400/000/spring");
+    	
+    	assertEquals("Spring Product1", product.getProdName());
+        assertEquals("Spring related Product", product.getProdDesc());
+    	assertEquals(300.0, product.getProdPrice(), 0.0);
+    	assertEquals("https://dummyimage.com/600x400/000/spring", product.getProdImage());
+    }
 
     @Test
     public void deleteProductWithId() {
@@ -66,5 +80,4 @@ public class RestapiApplicationTests {
         productRepository.delete(product);
         assertNotNull(product);
     }
-	
 }
