@@ -62,10 +62,7 @@ node {
 		bat "set KUBECONFIG=\"C:\\Users/VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/mongo-controller.yaml"
 	    bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/deployment.yaml"
 	    bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl create -f kub-deploy-files/service.yaml"
-		bat "set KUBECONFIG=\"C:\\Users\\VenkataSatyaSravaniM\\.kube\\config\" & kubectl config set-context docker-for-desktop-cluster & kubectl get services/spring-boot-service -o go-template=\"{{(index .spec.ports 0).nodePort}}\""
-		/*bat set PORT=kubectl get services/spring-boot-service -o go-template="{{(index .spec.ports 0).nodePort}}"
-	    bat "powershell.exe \$Portvalue=Get-Variable PORT -ValueOnly"
-        bat "powershell.exe \$message="My services are running on http://127.0.0.1:" + \$Portvalue"
-        bat "\$message"*/
+	    bat "echo Application is Running on: http://localhost:30036"
+		bat "echo Application REST-API URI : http://localhost:30036/products"
    }
 }
