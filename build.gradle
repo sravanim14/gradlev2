@@ -47,7 +47,7 @@ html.destination file("${buildDir}/jacocoHtml")
 }
 
 group = 'com.spring'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
