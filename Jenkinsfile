@@ -25,7 +25,7 @@ node {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
 		{
 		  bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          bat 'docker push sravanimadireddy/springboot-restapi:v2'
+          bat 'docker push sravanimadireddy/springboot-restapi:v2.0'
         }
    }
 }
